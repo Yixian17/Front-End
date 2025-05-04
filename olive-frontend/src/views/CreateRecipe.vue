@@ -202,11 +202,14 @@ const handleSubmit = async () => {
       return;
     }
 
-    const response = await fetch("http://localhost:8080/api/recipes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(recipe),
-    });
+    const response = await fetch(
+      "https://back-end-oo5f.onrender.com/api/recipes/api/recipes",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(recipe),
+      }
+    );
 
     if (!response.ok) {
       console.error("Recipe creation failed");
@@ -221,7 +224,7 @@ const handleSubmit = async () => {
       const formData = new FormData();
       formData.append("file", imageFile.value);
       await fetch(
-        `http://localhost:8080/api/recipes/${createdRecipeId}/image`,
+        `https://back-end-oo5f.onrender.com/api/recipes/${createdRecipeId}/image`,
         {
           method: "POST",
           body: formData,

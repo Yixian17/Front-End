@@ -80,7 +80,7 @@ const loadRecipe = async () => {
 const getImageUrl = (relativePath) => {
   console.log(relativePath);
   return relativePath && relativePath !== "/uploads/null" && relativePath !== ""
-    ? `http://localhost:8080${relativePath}`
+    ? `https://back-end-oo5f.onrender.com${relativePath}` //contention
     : "/images/placeholder-image.jpg"; // fallback image
 };
 

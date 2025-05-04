@@ -147,7 +147,7 @@ const loadRecipe = async () => {
 
   // Show the existing image as preview
   if (res.imageUrl) {
-    imagePreview.value = `http://localhost:8080${res.imageUrl}`;
+    imagePreview.value = `https://back-end-oo5f.onrender.com/${res.imageUrl}`; // contention
   }
 };
 
@@ -183,19 +183,25 @@ const handleUpdate = () => {
     };
     console.log(JSON.stringify(updatedRecipe, null, 2));
 
-    await fetch(`http://localhost:8080/api/recipes/${route.params.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedRecipe),
-    });
+    await fetch(
+      `https://back-end-oo5f.onrender.com/api/recipes/${route.params.id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedRecipe),
+      }
+    );
     const recipeid = route.params.id;
     if (imageFile.value) {
       const formData = new FormData();
       formData.append("file", imageFile.value);
-      await fetch(`http://localhost:8080/api/recipes/${recipeid}/image`, {
-        method: "POST",
-        body: formData,
-      });
+      await fetch(
+        `https://back-end-oo5f.onrender.com/api/recipes/${recipeid}/image`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
     }
 
     ElMessage.success("Recipe updated successfully!");
