@@ -203,7 +203,7 @@ const handleSubmit = async () => {
     }
 
     const response = await fetch(
-      "https://back-end-oo5f.onrender.com/api/recipes/api/recipes",
+      "https://back-end-oo5f.onrender.com/api/recipes",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
