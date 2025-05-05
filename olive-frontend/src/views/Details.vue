@@ -9,19 +9,19 @@
         <el-button type="text" @click="goBack" style="margin-bottom: 20px">
           ← Back to Dashboard
         </el-button>
-        <div class="right-action-buttons">
-          <el-button type="primary" @click="goToEdit" style="float: right"
-            >Edit</el-button
-          >
-          <el-button
-            type="danger"
-            @click="confirmDelete"
-            :loading="deleting"
-            :disabled="deleting"
-          >
-            Delete
-          </el-button>
-        </div>
+
+        <el-button type="primary" @click="goToEdit" style="float: right"
+          >Edit</el-button
+        >
+        <el-button
+          type="danger"
+          style="float: right"
+          @click="confirmDelete"
+          :loading="deleting"
+          :disabled="deleting"
+        >
+          Delete
+        </el-button>
       </div>
 
       <h2>{{ recipe.title }}</h2>
