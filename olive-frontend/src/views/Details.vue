@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div
+    v-loading="loading"
+    element-loading-text="Loading..."
+    element-loading-spinner="el-icon-loading"
+  >
     <div v-if="recipe" class="details-container">
       <div class="top-action-buttons">
         <el-button type="text" @click="goBack" style="margin-bottom: 20px">
@@ -67,13 +71,16 @@ import { useRecipeStore } from "../stores/recipeStore";
 const route = useRoute();
 const router = useRouter();
 const recipeStore = useRecipeStore();
+const loading = ref(true);
 
 const recipe = ref(null);
 
 const loadRecipe = async () => {
+  loading.value = true;
   const id = route.params.id;
   const result = await recipeStore.fetchRecipeById(id);
   recipe.value = result;
+  loading.value = false;
   console.log(recipe.value);
 };
 
