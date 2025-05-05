@@ -68,7 +68,11 @@
 
       <!-- Upload Image -->
       <el-form-item label="Upload Image">
-        <input type="file" @change="handleFileUpload" />
+        <input
+          type="file"
+          accept=".jpg, .jpeg, image/jpeg"
+          @change="handleFileUpload"
+        />
         <img
           v-if="imagePreview"
           :src="imagePreview"
@@ -155,6 +159,12 @@ const handleFileUpload = (e) => {
   // imageFile.value = e.target.files[0];
   const file = e.target.files[0];
   if (file) {
+    const validTypes = ["image/jpeg", "image/jpg"];
+    if (!validTypes.includes(file.type)) {
+      ElMessage.error("Only JPG or JPEG images are allowed.");
+      e.target.value = ""; // Clear the file input
+      return;
+    }
     imageFile.value = file;
     imagePreview.value = URL.createObjectURL(file);
   }
