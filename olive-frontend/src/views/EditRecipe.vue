@@ -1,5 +1,10 @@
 <template>
-  <div class="edit">
+  <div
+    class="edit"
+    v-loading="loading"
+    element-loading-text="Loading..."
+    element-loading-spinner="el-icon-loading"
+  >
     <el-card>
       <h2>Edit Recipe</h2>
       <el-form
@@ -94,6 +99,7 @@ const ingredientError = ref("");
 const imageFile = ref(null);
 const imagePreview = ref("");
 const recipeStore = useRecipeStore();
+const loading = ref(true);
 
 const form = ref({
   title: "",
@@ -141,9 +147,11 @@ const handleFileUpload = (e) => {
 };
 
 const loadRecipe = async () => {
+  loading.value = true;
   const id = route.params.id;
   const res = await recipeStore.fetchRecipeById(id);
   form.value = res;
+  loading.value = false;
 
   // Show the existing image as preview
   if (res.imageUrl) {
